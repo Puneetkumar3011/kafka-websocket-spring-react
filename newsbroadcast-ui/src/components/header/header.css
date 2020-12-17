@@ -1,0 +1,18 @@
+.header-main {
+  position: relative;
+  height: 28px;
+}
+
+.header-brand {
+  position: absolute;
+  margin-left: 10px;
+}
+
+.header-buttons {
+  position: absolute;
+  right: 10px;
+}
+
+#basic-navbar-nav > div > a {
+  width: 50px;
+}

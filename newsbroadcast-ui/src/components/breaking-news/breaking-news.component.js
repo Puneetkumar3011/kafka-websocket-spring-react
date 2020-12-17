@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { connectSocket, sendMessage } from './news-websocket';
+import { connectSocket, sendMessage } from './breaking-news-websocket';
 
-export default function News() {
+export default function BreakingNews() {
   const TOPIC_NEWS_RECEIVED = '/topic/newsReceived';
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function News() {
 
   return (
     <div>
-        <b>News</b>
+        <b>Breaking News</b>
         <br/>
       <button onClick={() => messageHandller('Puneet Singh')}>Send Message</button>
     </div>

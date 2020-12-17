@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { connectSocket, disconnectSocket, sendMessage } from "../core/web-socket.api";
+import React from "react";
+import BreakingNews from "../breaking-news/breaking-news.component";
+import News from "../news/news.component";
 
 export default function Home() {
-    const [data, setData] = useState([]);
-  
-    useEffect(() => {
-      connectSocket();
-    }, []);
-
-    const messageHandller = message => {
-        sendMessage(message);
-    }
   
     return (
-      <div>
-        <button onClick={() => messageHandller('Puneet Singh')}>Send Message</button> 
-      </div>
+      <div className='row'>
+        <div className='col-md-5'><BreakingNews/></div>
+        <div className='col-md-5 offset-md-2'><News/></div>
+    </div>
     );
+
   };
