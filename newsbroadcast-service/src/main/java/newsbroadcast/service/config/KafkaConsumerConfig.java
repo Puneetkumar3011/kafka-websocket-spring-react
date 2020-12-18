@@ -14,6 +14,7 @@ import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
+import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.retry.RetryPolicy;
 import org.springframework.retry.backoff.FixedBackOffPolicy;
 import org.springframework.retry.policy.SimpleRetryPolicy;
@@ -38,7 +39,7 @@ public class KafkaConsumerConfig {
 		// factory.setConcurrency(3);
 
 		/* default mode is BATCH; But some logic needed to set offset after manually then below line can be used */
-		// factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
+		 factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
 
 		factory.setErrorHandler(((thrownException, data) -> {
 			log.info("Exception in consumerConfig {} and the record is {}", thrownException.getMessage(), data);
