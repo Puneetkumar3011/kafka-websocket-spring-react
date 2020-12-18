@@ -11,7 +11,14 @@ public class NewsBroadcastController {
     @SendTo("/topic/newsReceived")
     public String newsReceived(String message) throws Exception {
         Thread.sleep(1000); // simulated delay
-        return new String("Hello, " + message + " !");
+        return new String("News Alert, " + message + " !");
+    }
+
+    @MessageMapping("/breakingNewsAlert")
+    @SendTo("/topic/breakingNewsReceived")
+    public String breakingNewsReceived(String message) throws Exception {
+        Thread.sleep(1000); // simulated delay
+        return new String("Breaking News, " + message + " !");
     }
 
 }
