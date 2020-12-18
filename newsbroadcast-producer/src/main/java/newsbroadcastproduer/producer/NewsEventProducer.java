@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import newsbroadcastproduer.domain.News;
+import newsbroadcastproduer.domain.NewsType;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Header;
 import org.apache.kafka.common.header.internals.RecordHeader;
@@ -35,11 +36,11 @@ public class NewsEventProducer {
     String kafkaTopicBreakingNews;
 
     public ListenableFuture<SendResult<String,String>> sendProductEventAsynchronousWithRecordHeader(News news) throws JsonProcessingException {
-
         String key = news.getId();
         String value = objectMapper.writeValueAsString(news);
+        String kafkaTopic = news.getNewsType() == NewsType.BreakingNews ? kafkaTopicBreakingNews : kafkaTopicNewsAlert;
 
-        ProducerRecord<String,String> producerRecord = buildProducerRecord(key, value, kafkaTopicNewsAlert);
+        ProducerRecord<String,String> producerRecord = buildProducerRecord(key, value, kafkaTopic);
 
         ListenableFuture<SendResult<String,String>> listenableFuture =  kafkaTemplate.send(producerRecord);
 

@@ -1,18 +1,23 @@
-.header-main {
-  position: relative;
-  height: 28px;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e0d8d8;
+  color: #252020;
+  height: 40px;
 }
 
 .header-brand {
-  position: absolute;
   margin-left: 10px;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .header-buttons {
-  position: absolute;
-  right: 10px;
+  margin-right: 10px;
 }
 
-#basic-navbar-nav > div > a {
+.link-button {
+  display: inline-block;
   width: 50px;
 }

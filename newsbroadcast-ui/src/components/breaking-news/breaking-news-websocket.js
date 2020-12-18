@@ -3,15 +3,16 @@ import * as SockJS from 'sockjs-client';
 
 const webSocketEndPoint = 'http://localhost:7000/breakingNewsAlert';
 const TOPIC = '/topic/breakingNewsReceived';
-let stompClient= null;
+let stompClient = null;
 
-export const connectSocket = () => {
+export const connectSocket = callBackFunc => {
     let ws = new SockJS(webSocketEndPoint);
     stompClient = Stomp.over(ws);
 
     stompClient.connect({}, frame => {
         stompClient.subscribe(TOPIC, sdkEvent => {
             onMessageReceived(sdkEvent);
+            callBackFunc(sdkEvent);
         });
     }, errorCallBack);
 
