@@ -4,8 +4,7 @@ import { connectSocket } from './breaking-news-websocket';
 import '../common/news-alert.css';
 
 export default function BreakingNews() {
-  const defaultNews = JSON.parse('{"id":"76076c7f-7b7a-4f9a-bdc5-ad28daaea21b","title":"Test Title","newsType":"NewsAlert","description":"skjfsdfh ka dfkja dfa skdf aksd bfkad ssdf"}');
-  const [newsAlerts, setNewsAlert] = useState([defaultNews]);
+  const [breakingNews, setBreakingNews] = useState([]);
 
   useEffect(() => {
     connectSocket(onMessageReceived);
@@ -14,26 +13,28 @@ export default function BreakingNews() {
   const onMessageReceived = message => {
     if (message && message.body) {
       const news = JSON.parse(message.body);
-      const newsList = [...newsAlerts, news];
-      setNewsAlert(newsList);
+      const newsList = [...breakingNews, news];
+      setBreakingNews(newsList);
     }
   };
 
   return (
     <div className='news-alert-main'>
-      <div className='news-alert-header'>Breaking News</div>
-      <ul className='news-ui'>
-        {newsAlerts.map(el => (
-          <li className='news-li' key={el.id}>
-            <div className='news-title'>
-              {el.title}
-            </div>
-            <div className='news-desc' title={el.description}>
-              {el.description}
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className='news-alert-header' style={{ backgroundColor: 'red' }}>Breaking News</div>
+      {breakingNews && breakingNews.length > 0 ?
+        <ul className='news-ui'>
+          {breakingNews.map(el => (
+            <li className='news-li' key={el.id}>
+              <div className='news-title'>
+                {el.title}
+              </div>
+              <div className='news-desc' title={el.description}>
+                {el.description}
+              </div>
+            </li>
+          ))}
+        </ul> : <div>No Breaking News</div>
+      }
     </div>
   );
 };

@@ -32,16 +32,4 @@ public class NewsEventController {
         return ResponseEntity.status(HttpStatus.CREATED).body(news);
     }
 
-    @GetMapping("/getNews")
-    public ResponseEntity<News> getNews() {
-        News news = new News();
-        String uuid = UUID.randomUUID().toString();
-        news.setId(uuid);
-        news.setDescription("skjfsdfh ka dfkja dfa skdf aksd bfkad ssdf");
-        news.setNewsType(NewsType.NewsAlert);
-        news.setTitle("Test Title");
-
-        return ResponseEntity.status(HttpStatus.FOUND).body(news);
-    }
-
 }
