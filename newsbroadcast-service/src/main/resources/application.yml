@@ -4,7 +4,8 @@ spring:
 server:
   port: 7000
 
-kafkaTopic: broadcast-news-event
+kafkaTopicNews: broadcast-news-alerts
+kafkaTopicBreakingNews: broadcast-breaking-news
 
 ---
 spring:

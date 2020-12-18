@@ -12,9 +12,13 @@ public class KafkaConsumerService {
 	@Autowired
 	SimpMessagingTemplate template;
 
-	@KafkaListener(topics="${kafkaTopic}")
-	public void consume(@Payload String message) {
+	@KafkaListener(topics="${kafkaTopicNews}")
+	public void newsReceived(@Payload String message) {
 		template.convertAndSend("/topic/newsReceived", message);
 	}
-	
+
+	@KafkaListener(topics="${kafkaTopicBreakingNews}")
+	public void breakingNewsReceived(@Payload String message) {
+		template.convertAndSend("/topic/breakingNewsReceived", message);
+	}
 }
