@@ -11,7 +11,6 @@ export const connectSocket = callBackFunc => {
 
     stompClient.connect({}, frame => {
         stompClient.subscribe(TOPIC, sdkEvent => {
-            onMessageReceived(sdkEvent);
             callBackFunc(sdkEvent);
         });
     }, errorCallBack);
@@ -24,14 +23,6 @@ export const disconnectSocket = () => {
         stompClient.disconnect();
     }
     console.log("Socket disconnected");
-};
-
-export const sendMessage = message => {
-    stompClient.send("/newsBroadcastApp/breakingNewsAlert", {}, JSON.stringify(message));
-};
-
-const onMessageReceived = message => {
-    console.log("Message Recieved from Server :: " + message);
 };
 
 const errorCallBack = error => {

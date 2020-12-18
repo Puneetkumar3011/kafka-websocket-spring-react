@@ -8,7 +8,7 @@ export default function BreakingNews() {
 
   useEffect(() => {
     connectSocket(onMessageReceived);
-  }, []);
+  });
 
   const onMessageReceived = message => {
     if (message && message.body) {

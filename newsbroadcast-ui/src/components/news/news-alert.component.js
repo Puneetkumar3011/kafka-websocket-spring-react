@@ -3,12 +3,12 @@ import { connectSocket } from './news-alert-websocket';
 
 import '../common/news-alert.css';
 
-export default function News() {
+export default function NewsAlert() {
   const [newsAlerts, setNewsAlert] = useState([]);
 
   useEffect(() => {
     connectSocket(onMessageReceived);
-  }, []);
+  });
 
   const onMessageReceived = message => {
     if (message && message.body) {
